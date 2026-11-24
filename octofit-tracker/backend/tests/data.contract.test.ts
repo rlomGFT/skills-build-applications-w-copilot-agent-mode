@@ -41,6 +41,8 @@ describe('OctoFit data contract', () => {
     expect(error?.errors.focus).toBeDefined();
     expect(error?.errors.minutes).toBeDefined();
     expect(error?.errors.difficulty).toBeDefined();
+    const missingTitle = new Workout({ focus: 'endurance', minutes: 30, difficulty: 'moderate' }).validateSync();
+    expect(missingTitle?.errors.title).toBeDefined();
   });
 
   it('seeds representative data for all four capabilities idempotently', async () => {
